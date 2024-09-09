@@ -65,6 +65,7 @@ const createScripts = async (username, excute, year, month) => {
 			};
 		})
 		.filter((contribution) => getRandomFilter(contribution, year, month))
+		.sort((prev, next) => prev.date.localeCompare(next.date))
 		.map((contribution) => getCommand(contribution))
 		.join("")
 		.concat("git pull origin main\n", "git push -f origin main");
